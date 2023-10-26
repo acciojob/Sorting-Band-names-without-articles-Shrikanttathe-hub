@@ -1,4 +1,4 @@
-let arr =  ['The Virupaksha Temple', 'Victoria Memorial', 'Tajmahal'];
+let arr =  ['The Virupaksha Temple', 'a Victoria Memorial', 'an Tajmahal'];
 let withoutArticles = [];
 let map = {};
 for(let i=0; i<arr.length; i++){
