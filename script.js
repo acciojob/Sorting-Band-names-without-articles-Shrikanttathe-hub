@@ -8,7 +8,6 @@ for(let i=0; i<arr.length; i++){
 	str = str.trim();
 	withoutArticles.push(str);
 }
-console.log(withoutArticles);
 withoutArticles.sort;
 for(let i=0;i<withoutArticles.length; i++){
 	console.log(map [withoutArticles[i] ]);
