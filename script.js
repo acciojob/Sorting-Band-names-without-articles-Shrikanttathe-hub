@@ -1,37 +1,46 @@
-// let touristSpots = ['The Virupaksha Temple', 'Victoria Memorial', 'Tajmahal'];
+// Given array of band names
+let bandNames = ['The Rolling Stones', 'Led Zeppelin', 'The Beatles', 'Pink Floyd', 'Aerosmith'];
 
-// let withoutArticles = [ "Virupaksha Temple","Victoria Memorial", "Tajmahal"]
-// let sortedWithoutArticles = ["Tajmahal", "Victoria Memorial", "Virupaksha Temple"]
+// Function to sort band names without articles
+function sortBandNames(bandNames) {
+    // Custom sorting function
+    function customSort(a, b) {
+        // Helper function to remove articles and get the remaining name
+        function removeArticles(name) {
+            const articles = ['a', 'an', 'the'];
+            for (const article of articles) {
+                const articleWithSpace = article + ' ';
+                if (name.startsWith(articleWithSpace)) {
+                    return name.slice(articleWithSpace.length);
+                }
+            }
+            return name;
+        }
 
-// let finalAns = ["Tajmahal","Victoria Memorial", "The Virupaksha Temple" ]
+        // Compare names without articles
+        const nameA = removeArticles(a.toLowerCase());
+        const nameB = removeArticles(b.toLowerCase());
 
-// let str = "The jeba an rohan";
-// str = str.replace(/\ban\b|\bthe\b|\ba\b/gi, "")
-// str = str.replace(/ +/gi, " ");
-// str = str.trim();
-// "jeba rohan"
+        return nameA.localeCompare(nameB);
+    }
 
-// p1: in the start  () => "The jeba an rohan" => "jeba an rohan"
-// p2: in the middle _the_ | _an_ | _a_
-// p3: in the end
+    // Sort the array using the custom sorting function
+    return bandNames.sort(customSort);
+}
 
-// str.replace(/the|an|a/gi, '') ; 
+// Sort the band names and print them inside ul id='band' tag
+const sortedBandNames = sortBandNames(bandNames);
 
+// Create ul element
+const ulElement = document.createElement('ul');
+ulElement.id = 'band';
 
-// articles may be there at the beginning only.
+// Add li elements to ul
+sortedBandNames.forEach(band => {
+    const liElement = document.createElement('li');
+    liElement.textContent = band;
+    ulElement.appendChild(liElement);
+});
 
- let arr = ['The Virupaksha Temple', 'A Victoria Memorial', 'An Tajmahal'];
- let withoutArticles =  [] ;
- let map = {} ;
- for(let i = 0 ; i < arr.length; i++) {
-     let str = arr[i];
-     str = str.replace(/\ban\b|\bthe\b|\ba\b/gi, "")
-    str = str.replace(/ +/gi, " ");
-    str = str.trim();
-   map[str] = arr[i];
-   withoutArticles.push(str);
- }
- withoutArticles.sort();
-for(let i = 0; i < withoutArticles.length; i++) {
-     console.log(map[ withoutArticles[i] ]);
- }
+// Append ul to the body
+document.body.appendChild(ulElement);
